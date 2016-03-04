@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSplitButtonNewRequest = new System.Windows.Forms.ToolStripSplitButton();
-            this.bnmhgToolStripMenuItemNewHttpRequest = new System.Windows.Forms.ToolStripMenuItem();
-            this.sMTPToolStripMenuItemNewSmtpRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonBookmarkTab = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.toolStripSplitButtonNewRequest = new System.Windows.Forms.ToolStripSplitButton();
+            this.bnmhgToolStripMenuItemNewHttpRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.sMTPToolStripMenuItemNewSmtpRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButtonBookmarkTab = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -84,46 +85,10 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSplitButtonNewRequest
-            // 
-            this.toolStripSplitButtonNewRequest.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bnmhgToolStripMenuItemNewHttpRequest,
-            this.sMTPToolStripMenuItemNewSmtpRequest});
-            this.toolStripSplitButtonNewRequest.Image = global::AppRequestGenerator.Properties.Resources.Expand_16xLG;
-            this.toolStripSplitButtonNewRequest.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButtonNewRequest.Name = "toolStripSplitButtonNewRequest";
-            this.toolStripSplitButtonNewRequest.Size = new System.Drawing.Size(108, 22);
-            this.toolStripSplitButtonNewRequest.Text = "New Request";
-            this.toolStripSplitButtonNewRequest.ButtonClick += new System.EventHandler(this.toolStripSplitButtonNewRequest_ButtonClick);
-            // 
-            // bnmhgToolStripMenuItemNewHttpRequest
-            // 
-            this.bnmhgToolStripMenuItemNewHttpRequest.Name = "bnmhgToolStripMenuItemNewHttpRequest";
-            this.bnmhgToolStripMenuItemNewHttpRequest.Size = new System.Drawing.Size(152, 22);
-            this.bnmhgToolStripMenuItemNewHttpRequest.Text = "&HTTP/HTTPS";
-            this.bnmhgToolStripMenuItemNewHttpRequest.Click += new System.EventHandler(this.bnmhgToolStripMenuItemNewHttpRequest_Click);
-            // 
-            // sMTPToolStripMenuItemNewSmtpRequest
-            // 
-            this.sMTPToolStripMenuItemNewSmtpRequest.Name = "sMTPToolStripMenuItemNewSmtpRequest";
-            this.sMTPToolStripMenuItemNewSmtpRequest.Size = new System.Drawing.Size(152, 22);
-            this.sMTPToolStripMenuItemNewSmtpRequest.Text = "&SMTP";
-            this.sMTPToolStripMenuItemNewSmtpRequest.Click += new System.EventHandler(this.sMTPToolStripMenuItemNewSmtpRequest_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonBookmarkTab
-            // 
-            this.toolStripButtonBookmarkTab.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBookmarkTab.Image = global::AppRequestGenerator.Properties.Resources.bookmark_003_16xLG_debugger;
-            this.toolStripButtonBookmarkTab.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonBookmarkTab.Name = "toolStripButtonBookmarkTab";
-            this.toolStripButtonBookmarkTab.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonBookmarkTab.Text = "Bookmark Tab";
-            this.toolStripButtonBookmarkTab.Click += new System.EventHandler(this.toolStripButtonBookmarkTab_Click);
             // 
             // splitContainer1
             // 
@@ -160,6 +125,42 @@
             this.tabControl1.Size = new System.Drawing.Size(697, 545);
             this.tabControl1.TabIndex = 0;
             // 
+            // toolStripSplitButtonNewRequest
+            // 
+            this.toolStripSplitButtonNewRequest.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bnmhgToolStripMenuItemNewHttpRequest,
+            this.sMTPToolStripMenuItemNewSmtpRequest});
+            this.toolStripSplitButtonNewRequest.Image = global::AppRequestGenerator.Properties.Resources.Expand_16xLG;
+            this.toolStripSplitButtonNewRequest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButtonNewRequest.Name = "toolStripSplitButtonNewRequest";
+            this.toolStripSplitButtonNewRequest.Size = new System.Drawing.Size(108, 22);
+            this.toolStripSplitButtonNewRequest.Text = "New Request";
+            this.toolStripSplitButtonNewRequest.ButtonClick += new System.EventHandler(this.toolStripSplitButtonNewRequest_ButtonClick);
+            // 
+            // bnmhgToolStripMenuItemNewHttpRequest
+            // 
+            this.bnmhgToolStripMenuItemNewHttpRequest.Name = "bnmhgToolStripMenuItemNewHttpRequest";
+            this.bnmhgToolStripMenuItemNewHttpRequest.Size = new System.Drawing.Size(145, 22);
+            this.bnmhgToolStripMenuItemNewHttpRequest.Text = "&HTTP/HTTPS";
+            this.bnmhgToolStripMenuItemNewHttpRequest.Click += new System.EventHandler(this.bnmhgToolStripMenuItemNewHttpRequest_Click);
+            // 
+            // sMTPToolStripMenuItemNewSmtpRequest
+            // 
+            this.sMTPToolStripMenuItemNewSmtpRequest.Name = "sMTPToolStripMenuItemNewSmtpRequest";
+            this.sMTPToolStripMenuItemNewSmtpRequest.Size = new System.Drawing.Size(145, 22);
+            this.sMTPToolStripMenuItemNewSmtpRequest.Text = "&SMTP";
+            this.sMTPToolStripMenuItemNewSmtpRequest.Click += new System.EventHandler(this.sMTPToolStripMenuItemNewSmtpRequest_Click);
+            // 
+            // toolStripButtonBookmarkTab
+            // 
+            this.toolStripButtonBookmarkTab.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBookmarkTab.Image = global::AppRequestGenerator.Properties.Resources.bookmark_003_16xLG_debugger;
+            this.toolStripButtonBookmarkTab.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBookmarkTab.Name = "toolStripButtonBookmarkTab";
+            this.toolStripButtonBookmarkTab.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonBookmarkTab.Text = "Bookmark Tab";
+            this.toolStripButtonBookmarkTab.Click += new System.EventHandler(this.toolStripButtonBookmarkTab_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +170,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "App Request Generator";
