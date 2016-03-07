@@ -131,12 +131,32 @@ namespace AppRequestGenerator
 
             //RequestHeaders = this.textBoxRequestHeaders.Text.Split(System.Environment.NewLine.ToCharArray())
 
-            this.backgroundWorker1.RunWorkerAsync(requestInfos);
+            if (this.backgroundWorker1.IsBusy)
+            {
+                MessageBox.Show("Request is already running.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                this.backgroundWorker1.RunWorkerAsync(requestInfos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(String.Format("Failed to start new request: {0}", ex.Message.ToString()));
+                return;
+            }
+
+            SetMouseCursorOnAllControls(this, Cursors.WaitCursor);
+            this.toolStripButton1.Enabled = false;
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if(e.Error != null)
+            SetMouseCursorOnAllControls(this, Cursors.Default);
+            this.toolStripButton1.Enabled = true;
+
+            if (e.Error != null)
             {
                 MessageBox.Show(String.Format("Error: {0}", e.Error.Message.ToString()));
                 return;
@@ -162,6 +182,28 @@ namespace AppRequestGenerator
                 writer.Write("content=" + dlc_content);
             }
             */
+        }
+
+        private void SetMouseCursorOnAllControls(Control startControl, Cursor newCursor)
+        {
+            try
+            {
+                startControl.Cursor = newCursor;
+            }
+            catch (NotSupportedException)
+            {
+            }
+
+            foreach (Control c in startControl.Controls)
+            {
+                try {
+                    c.Cursor = newCursor;
+                }
+                catch(NotSupportedException)
+                {
+                }
+                this.SetMouseCursorOnAllControls(c, newCursor);
+            }
         }
 
         private void textBoxURI_TextChanged(object sender, EventArgs e)

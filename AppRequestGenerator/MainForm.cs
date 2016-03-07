@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace AppRequestGenerator
 {
@@ -37,7 +39,7 @@ namespace AppRequestGenerator
                 Type selectedRequestType = this.AvailableRequests[requestType];
                 dynamicControl = (UserControl)Activator.CreateInstance(selectedRequestType);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(String.Format("Invalid request type: {0}", ex.Message.ToString()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -57,7 +59,7 @@ namespace AppRequestGenerator
         private void treeView1_DoubleClick(object sender, EventArgs e)
         {
             TreeNode selectedNode = this.treeView1.SelectedNode;
-            if(selectedNode == null)
+            if (selectedNode == null)
             {
                 return;
             }
@@ -106,5 +108,47 @@ namespace AppRequestGenerator
             newNode.Tag = settings;
             this.treeView1.Nodes.Add(newNode);
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDialog1.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            List<TabSettings> allSettings;
+            using (System.IO.StreamReader file = new System.IO.StreamReader(this.openFileDialog1.FileName))
+            {
+                allSettings = JsonConvert.DeserializeObject<List<TabSettings>>(file.ReadToEnd());
+                file.Close();
+            }
+
+            // TODO fill tree
+            return;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            List<TabSettings> allSettings = new List<TabSettings>();
+            foreach (TreeNode node in this.treeView1.Nodes)
+            {
+                allSettings.Add((TabSettings)node.Tag);
+            }
+
+            string json = JsonConvert.SerializeObject(allSettings, Formatting.Indented);
+            Debug.WriteLine(json);
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(this.saveFileDialog1.FileName))
+            {
+                file.WriteLine(json);
+                file.Close();
+            }
+
+        }
     }
+
 }

@@ -33,14 +33,18 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolStripSplitButtonNewRequest = new System.Windows.Forms.ToolStripSplitButton();
             this.bnmhgToolStripMenuItemNewHttpRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.sMTPToolStripMenuItemNewSmtpRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBookmarkTab = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -69,6 +73,9 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
@@ -85,10 +92,46 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripSplitButtonNewRequest
+            // 
+            this.toolStripSplitButtonNewRequest.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bnmhgToolStripMenuItemNewHttpRequest,
+            this.sMTPToolStripMenuItemNewSmtpRequest});
+            this.toolStripSplitButtonNewRequest.Image = global::AppRequestGenerator.Properties.Resources.Expand_16xLG;
+            this.toolStripSplitButtonNewRequest.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButtonNewRequest.Name = "toolStripSplitButtonNewRequest";
+            this.toolStripSplitButtonNewRequest.Size = new System.Drawing.Size(108, 22);
+            this.toolStripSplitButtonNewRequest.Text = "New Request";
+            this.toolStripSplitButtonNewRequest.ButtonClick += new System.EventHandler(this.toolStripSplitButtonNewRequest_ButtonClick);
+            // 
+            // bnmhgToolStripMenuItemNewHttpRequest
+            // 
+            this.bnmhgToolStripMenuItemNewHttpRequest.Name = "bnmhgToolStripMenuItemNewHttpRequest";
+            this.bnmhgToolStripMenuItemNewHttpRequest.Size = new System.Drawing.Size(145, 22);
+            this.bnmhgToolStripMenuItemNewHttpRequest.Text = "&HTTP/HTTPS";
+            this.bnmhgToolStripMenuItemNewHttpRequest.Click += new System.EventHandler(this.bnmhgToolStripMenuItemNewHttpRequest_Click);
+            // 
+            // sMTPToolStripMenuItemNewSmtpRequest
+            // 
+            this.sMTPToolStripMenuItemNewSmtpRequest.Name = "sMTPToolStripMenuItemNewSmtpRequest";
+            this.sMTPToolStripMenuItemNewSmtpRequest.Size = new System.Drawing.Size(145, 22);
+            this.sMTPToolStripMenuItemNewSmtpRequest.Text = "&SMTP";
+            this.sMTPToolStripMenuItemNewSmtpRequest.Click += new System.EventHandler(this.sMTPToolStripMenuItemNewSmtpRequest_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonBookmarkTab
+            // 
+            this.toolStripButtonBookmarkTab.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBookmarkTab.Image = global::AppRequestGenerator.Properties.Resources.bookmark_003_16xLG_debugger;
+            this.toolStripButtonBookmarkTab.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBookmarkTab.Name = "toolStripButtonBookmarkTab";
+            this.toolStripButtonBookmarkTab.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonBookmarkTab.Text = "Bookmark Tab";
+            this.toolStripButtonBookmarkTab.Click += new System.EventHandler(this.toolStripButtonBookmarkTab_Click);
             // 
             // splitContainer1
             // 
@@ -125,41 +168,23 @@
             this.tabControl1.Size = new System.Drawing.Size(697, 545);
             this.tabControl1.TabIndex = 0;
             // 
-            // toolStripSplitButtonNewRequest
+            // openToolStripMenuItem
             // 
-            this.toolStripSplitButtonNewRequest.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bnmhgToolStripMenuItemNewHttpRequest,
-            this.sMTPToolStripMenuItemNewSmtpRequest});
-            this.toolStripSplitButtonNewRequest.Image = global::AppRequestGenerator.Properties.Resources.Expand_16xLG;
-            this.toolStripSplitButtonNewRequest.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButtonNewRequest.Name = "toolStripSplitButtonNewRequest";
-            this.toolStripSplitButtonNewRequest.Size = new System.Drawing.Size(108, 22);
-            this.toolStripSplitButtonNewRequest.Text = "New Request";
-            this.toolStripSplitButtonNewRequest.ButtonClick += new System.EventHandler(this.toolStripSplitButtonNewRequest_ButtonClick);
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "&Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-            // bnmhgToolStripMenuItemNewHttpRequest
+            // saveToolStripMenuItem
             // 
-            this.bnmhgToolStripMenuItemNewHttpRequest.Name = "bnmhgToolStripMenuItemNewHttpRequest";
-            this.bnmhgToolStripMenuItemNewHttpRequest.Size = new System.Drawing.Size(145, 22);
-            this.bnmhgToolStripMenuItemNewHttpRequest.Text = "&HTTP/HTTPS";
-            this.bnmhgToolStripMenuItemNewHttpRequest.Click += new System.EventHandler(this.bnmhgToolStripMenuItemNewHttpRequest_Click);
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save...";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // sMTPToolStripMenuItemNewSmtpRequest
+            // openFileDialog1
             // 
-            this.sMTPToolStripMenuItemNewSmtpRequest.Name = "sMTPToolStripMenuItemNewSmtpRequest";
-            this.sMTPToolStripMenuItemNewSmtpRequest.Size = new System.Drawing.Size(145, 22);
-            this.sMTPToolStripMenuItemNewSmtpRequest.Text = "&SMTP";
-            this.sMTPToolStripMenuItemNewSmtpRequest.Click += new System.EventHandler(this.sMTPToolStripMenuItemNewSmtpRequest_Click);
-            // 
-            // toolStripButtonBookmarkTab
-            // 
-            this.toolStripButtonBookmarkTab.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBookmarkTab.Image = global::AppRequestGenerator.Properties.Resources.bookmark_003_16xLG_debugger;
-            this.toolStripButtonBookmarkTab.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonBookmarkTab.Name = "toolStripButtonBookmarkTab";
-            this.toolStripButtonBookmarkTab.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonBookmarkTab.Text = "Bookmark Tab";
-            this.toolStripButtonBookmarkTab.Click += new System.EventHandler(this.toolStripButtonBookmarkTab_Click);
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -201,6 +226,10 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButtonNewRequest;
         private System.Windows.Forms.ToolStripMenuItem bnmhgToolStripMenuItemNewHttpRequest;
         private System.Windows.Forms.ToolStripMenuItem sMTPToolStripMenuItemNewSmtpRequest;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
