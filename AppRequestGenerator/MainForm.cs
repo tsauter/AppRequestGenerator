@@ -158,6 +158,14 @@ namespace AppRequestGenerator
             }
 
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedTab != null)
+            {
+                this.tabControl1.TabPages.Remove(this.tabControl1.SelectedTab);
+            }
+        }
     }
 
 }
