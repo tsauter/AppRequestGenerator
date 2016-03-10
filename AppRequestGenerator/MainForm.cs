@@ -123,7 +123,16 @@ namespace AppRequestGenerator
                 file.Close();
             }
 
-            // TODO fill tree
+            this.treeView1.Nodes.Clear();
+
+            foreach (TabSettings settings in allSettings)
+            {
+                TreeNode newNode = new TreeNode();
+                newNode.Text = settings.Name;
+                newNode.Tag = settings;
+                this.treeView1.Nodes.Add(newNode);
+            }
+
             return;
         }
 
