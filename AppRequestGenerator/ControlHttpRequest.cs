@@ -165,12 +165,20 @@ namespace AppRequestGenerator
             HttpWebResponse response = (HttpWebResponse)e.Result;
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                string responseText = reader.ReadToEnd();
+                string responseText = reader.ReadToEnd().Replace("\n", "\r\n");
                 this.textBoxResponseRaw.Text = responseText;
 
                 // Convert the string to an JSON object and reconvert the object to a pretty formatted string
-                var tmpJsonObject = JsonConvert.DeserializeObject(responseText);
-                var tmpJsonString = JsonConvert.SerializeObject(tmpJsonObject, Formatting.Indented);
+                string tmpJsonString = responseText; // default is the raw response text
+                try
+                {
+                    var tmpJsonObject = JsonConvert.DeserializeObject(responseText);
+                    tmpJsonString = JsonConvert.SerializeObject(tmpJsonObject, Formatting.Indented);
+                }
+                catch (Exception)
+                {
+                    //MessageBox.Show("Unable to parse response as JSON object.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 this.textBoxRepsonsePretty.Text = tmpJsonString;
 
                 this.webBrowser1.DocumentText = tmpJsonString;
@@ -215,6 +223,14 @@ namespace AppRequestGenerator
             }
             catch 
             {
+            }
+        }
+
+        private void textBoxURI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                toolStripButton1_Click_1(sender, e);
             }
         }
     }

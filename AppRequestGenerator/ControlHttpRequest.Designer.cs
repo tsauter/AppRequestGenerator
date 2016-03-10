@@ -132,6 +132,7 @@
             this.textBoxURI.Size = new System.Drawing.Size(827, 20);
             this.textBoxURI.TabIndex = 1;
             this.textBoxURI.TextChanged += new System.EventHandler(this.textBoxURI_TextChanged);
+            this.textBoxURI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxURI_KeyDown);
             // 
             // comboBoxProtocol
             // 
