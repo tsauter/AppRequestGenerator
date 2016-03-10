@@ -166,6 +166,26 @@ namespace AppRequestGenerator
                 this.tabControl1.TabPages.Remove(this.tabControl1.SelectedTab);
             }
         }
+
+        private void cloneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedTab != null)
+            {
+                ControlHttpRequest requestControl = (ControlHttpRequest)this.tabControl1.SelectedTab.Controls[0];
+                TabSettings oldSettings = requestControl.SaveControlSettings();
+
+                ControlHttpRequest newRequestControl = new ControlHttpRequest(oldSettings);
+
+                TabPage protocolTabPage = new TabPage();
+                protocolTabPage.Text = newRequestControl.Name;
+                newRequestControl.Dock = DockStyle.Fill;
+                protocolTabPage.Controls.Add(newRequestControl);
+
+                this.tabControl1.TabPages.Add(protocolTabPage);
+                this.tabControl1.SelectedTab = protocolTabPage;
+            }
+
+        }
     }
 
 }
