@@ -63,6 +63,11 @@ namespace AppRequestGenerator
             }
             if (settings.Settings.ContainsKey("Protocol"))
             {
+                if(!this.comboBoxProtocol.Items.Contains((string)settings.Settings["Protocol"]))
+                {
+                    MessageBox.Show(string.Format("Stored protocol {0} not supported. Please verify restored settings before starting the request.", (string)settings.Settings["Protocol"]),
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 this.comboBoxProtocol.Text = (string)settings.Settings["Protocol"];
             }
         }
