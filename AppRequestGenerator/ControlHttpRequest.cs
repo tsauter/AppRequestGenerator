@@ -76,7 +76,7 @@ namespace AppRequestGenerator
         {
             string url = this.textBoxURI.Text.Trim();
 
-            TabSettings settings = new TabSettings(String.Format("{0}: {1}", this.Name, url));
+            TabSettings settings = new TabSettings(this.Name);
             settings.Settings.Add("Protocol", this.comboBoxProtocol.Text);
             settings.Settings.Add("URL", url);
             return settings;
