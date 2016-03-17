@@ -57,7 +57,14 @@ namespace AppRequestGenerator
                 this.tabControlResponse.SelectedTab = this.tabControlResponse.TabPages[0];
             }
 
-            this.textBoxURI.Text = (string)settings.Settings["URL"];
+            if (settings.Settings.ContainsKey("URL"))
+            {
+                this.textBoxURI.Text = (string)settings.Settings["URL"];
+            }
+            if (settings.Settings.ContainsKey("Protocol"))
+            {
+                this.comboBoxProtocol.Text = (string)settings.Settings["Protocol"];
+            }
         }
 
         public TabSettings SaveControlSettings()
@@ -65,6 +72,7 @@ namespace AppRequestGenerator
             string url = this.textBoxURI.Text.Trim();
 
             TabSettings settings = new TabSettings(String.Format("{0}: {1}", this.Name, url));
+            settings.Settings.Add("Protocol", this.comboBoxProtocol.Text);
             settings.Settings.Add("URL", url);
             return settings;
         }
