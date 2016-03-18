@@ -16,13 +16,15 @@ using System.Text.RegularExpressions;
 
 namespace AppRequestGenerator
 {
-    public partial class ControlHttpRequest : UserControl
+    public partial class ControlHttpRequest : RequestControl
     {
+        public const string DefaultTitle = "HTTP/HTTPS";
+
         public ControlHttpRequest()
         {
             InitializeComponent();
 
-            this.Name = "HTTP/HTTPS";
+            this.SetTitle(ControlHttpRequest.DefaultTitle);
 
             int gridWidth = this.dataGridView1.Size.Width;
             this.dataGridView1.Columns[0].Width = gridWidth / 3;
@@ -70,16 +72,28 @@ namespace AppRequestGenerator
                 }
                 this.comboBoxProtocol.Text = (string)settings.Settings["Protocol"];
             }
+
         }
 
         public TabSettings SaveControlSettings()
         {
             string url = this.textBoxURI.Text.Trim();
 
-            TabSettings settings = new TabSettings(this.Name);
+            TabSettings settings = new TabSettings(this.GetTitle());
             settings.Settings.Add("Protocol", this.comboBoxProtocol.Text);
             settings.Settings.Add("URL", url);
             return settings;
+        }
+
+        public void SetTabTitle()
+        {
+            this.SetTitle(String.Format("{0} [{1}]", this.textBoxURI.Text.Trim().ToLower(), this.comboBoxProtocol.Text.Trim().ToUpper()));
+
+            // Find the parent control Tab
+            if (this.Parent != null)
+            {
+                this.Parent.Text = this.GetTitle();
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -229,14 +243,7 @@ namespace AppRequestGenerator
 
         private void textBoxURI_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                var parentTab = this.textBoxURI.Parent.Parent.Parent.Parent;
-                parentTab.Text = String.Format("{0}: {1}", this.Name, this.textBoxURI.Text.Trim().ToLower());
-            }
-            catch 
-            {
-            }
+            this.SetTabTitle();
         }
 
         private void textBoxURI_KeyDown(object sender, KeyEventArgs e)
@@ -245,6 +252,11 @@ namespace AppRequestGenerator
             {
                 toolStripButton1_Click_1(sender, e);
             }
+        }
+
+        private void comboBoxProtocol_SelectedValueChanged(object sender, EventArgs e)
+        {
+            this.SetTabTitle();
         }
     }
 }

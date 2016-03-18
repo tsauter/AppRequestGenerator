@@ -149,6 +149,7 @@
             this.comboBoxProtocol.Name = "comboBoxProtocol";
             this.comboBoxProtocol.Size = new System.Drawing.Size(127, 21);
             this.comboBoxProtocol.TabIndex = 0;
+            this.comboBoxProtocol.SelectedValueChanged += new System.EventHandler(this.comboBoxProtocol_SelectedValueChanged);
             // 
             // splitContainer1
             // 

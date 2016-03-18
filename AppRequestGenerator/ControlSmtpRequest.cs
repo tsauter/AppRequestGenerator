@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace AppRequestGenerator
 {
-    public partial class ControlSmtpRequest : UserControl
+    public partial class ControlSmtpRequest : RequestControl
     {
         public ControlSmtpRequest()
         {

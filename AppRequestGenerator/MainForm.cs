@@ -33,11 +33,11 @@ namespace AppRequestGenerator
 
         private void CreateNewTab(RequestType requestType)
         {
-            UserControl dynamicControl;
+            RequestControl dynamicControl;
             try
             {
                 Type selectedRequestType = this.AvailableRequests[requestType];
-                dynamicControl = (UserControl)Activator.CreateInstance(selectedRequestType);
+                dynamicControl = (RequestControl)Activator.CreateInstance(selectedRequestType);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace AppRequestGenerator
             }
 
             TabPage protocolTabPage = new TabPage();
-            protocolTabPage.Text = dynamicControl.Name;
+            protocolTabPage.Text = dynamicControl.GetTitle();
             dynamicControl.Dock = DockStyle.Fill;
             protocolTabPage.Controls.Add(dynamicControl);
 
@@ -74,6 +74,8 @@ namespace AppRequestGenerator
 
             this.tabControl1.TabPages.Add(protocolTabPage);
             this.tabControl1.SelectedTab = protocolTabPage;
+
+            dynamicControl.SetTabTitle();
         }
 
         private void toolStripSplitButtonNewRequest_ButtonClick(object sender, EventArgs e)
@@ -177,7 +179,7 @@ namespace AppRequestGenerator
                 ControlHttpRequest newRequestControl = new ControlHttpRequest(oldSettings);
 
                 TabPage protocolTabPage = new TabPage();
-                protocolTabPage.Text = newRequestControl.Name;
+                protocolTabPage.Text = newRequestControl.GetTitle();
                 newRequestControl.Dock = DockStyle.Fill;
                 protocolTabPage.Controls.Add(newRequestControl);
 
